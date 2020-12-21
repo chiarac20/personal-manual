@@ -1,4 +1,4 @@
-##Visual Studio Code Shortcuts
+## Visual Studio Code Shortcuts
 
 1. **ctrl b** to open the file without the menu on the side
 
