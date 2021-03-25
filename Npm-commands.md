@@ -1,4 +1,5 @@
-##Npm 
+## Npm commands
+
 
 in the main folder of the project create a file called `.gitignore`
 open the file and write `node_modules/`

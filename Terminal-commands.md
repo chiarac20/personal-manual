@@ -1,4 +1,4 @@
-##Terminal commands
+## Terminal commands
 
 Open terminal
 
