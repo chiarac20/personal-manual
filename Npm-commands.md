@@ -13,9 +13,11 @@ npm init -y
 npm install -d parcel-bundler
 ```
 
+Create `index.html` into `src` folder
+
 Once it's ready open **package.json** file
 
-In **scripts** write **"start": "parcel./src/index.html --open"** 
+In **scripts** write **"start": "parcel ./src/index.html --open"** 
 
 **npm start** enter, to open the file in browser
 
