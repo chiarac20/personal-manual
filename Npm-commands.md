@@ -4,9 +4,14 @@
 in the main folder of the project create a file called `.gitignore`
 open the file and write `node_modules/`
 
-**npm init -y** in terminal 
+in terminal open the folder of the project
 
-**npm install -d parcel-bundler** to create node modules
+```bash
+# init package
+npm init -y
+# install the bundler
+npm install -d parcel-bundler
+```
 
 Once it's ready open **package.json** file
 
