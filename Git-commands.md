@@ -22,6 +22,10 @@ Press 'clone url' and paste the url in terminal as follows:
 
 
 
+Open the folder you want to clone the repository in with 'cd OneDrive/desktop/foldername'
+
+
+
 **git clone** and paste the url, to copy a repository and put it in a folder
 
 

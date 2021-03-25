@@ -1,6 +1,7 @@
-##Npm commands
+##Npm 
 
-
+in the main folder of the project create a file called `.gitignore`
+open the file and write `node_modules/`
 
 **npm init -y** in terminal 
 
