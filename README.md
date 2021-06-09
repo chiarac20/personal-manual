@@ -5,6 +5,7 @@
 1. [git commands](./Git-commands.md)
 1. [npm commands](./Npm-commands.md)
 1. [terminal commands](./Terminal-commands.md)
+1. [routing] (./routing.md)
 
 
 ## Useful links:
