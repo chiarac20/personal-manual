@@ -6,6 +6,7 @@
 1. [npm commands](./Npm-commands.md)
 1. [terminal commands](./Terminal-commands.md)
 1. [routing](./routing.md)
+1. [Create react app steps](./create-react-app.md)
 
 
 ## Useful links:
