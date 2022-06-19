@@ -68,3 +68,8 @@ Open the folder you want to clone the repository in with 'cd OneDrive/desktop/fo
 
 **git branch** gives the list of all the local branches I have and highlights the branch I am in
 
+**git log** shows the list of the last commits (including their ashes)
+
+**git cherry-pick** copies the changes of one commit
+
+**git rebase** it can be used for 2 actions: to rebase a branch based on another one  or to squash multiple commits into one commit
