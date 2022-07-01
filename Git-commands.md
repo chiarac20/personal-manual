@@ -70,6 +70,8 @@ Open the folder you want to clone the repository in with 'cd OneDrive/desktop/fo
 
 **git log** shows the list of the last commits (including their ashes)
 
+**git fetch** updates the local branches with a report of the missing commits needed to be aligned with the correspondent branch on the server
+
 **git cherry-pick** copies the changes of one commit
 
 **git rebase** it can be used for 2 actions: to rebase a branch based on another one  or to squash multiple commits into one commit
