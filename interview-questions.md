@@ -450,24 +450,33 @@ shorthand with 1 value applies it to the 4 sides
 margin: auto is used to centre an element horizontally in its container
 Margin can be a negative value
 
-FLOAT AND DISPLAY
-Float is used to make an element float to the right or left or not at all. float: right
-Display is used to change the display behaviour of an element: 
-display: inline (displays an element as an inline element(like a <span/>))
-display: block (displays an element as a block element(like a <div/>))
-display: inline-block (displays an element as an inline-block container, so on the same line but with some spacing)
-display: none (makes the element disappear)
+### FLOAT AND DISPLAY
+**Float** is used to make an element float to the right or left or not at all. `float: right`
 
-FLEXBOX
+**Display** is used to change the display behaviour of an element:
+```
+// displays an element as an inline element(like a <span/>)
+display: inline;
+// displays an element as a block element(like a <div/>)
+display: block;
+// displays an element as an inline-block container, so on the same line but with some spacing
+display: inline-block;
+// makes the element disappear
+display: none;
+```
+
+### FLEXBOX
 Defines the layout of the children components and it’s formed of a flex container and flex items that are children of the flex container. It’s very useful as it is responsive
-In the container:
-Display: inline-flex is a variant of display-flex . The difference is that it acts as inline, so it only takes the space it needs and allows other tags to be on the same line 
-Display: flex
-Flex-direction defines the direction of the items, row is the default
-Flex-direction: row(in fila), column (in colonna), row-reverse, column-reverse to reverse items
-Flex-wrap is used to wrap or no wrap items if there is no space left
-Flex-wrap: wrap (is used to wrap items and send them to a new line if necessary)
-Flex-wrap: nowrap (is used not to wrap items, so items will be squeezed to fit, it’s the default)
+
+**In the container:**
+
+1. `display: inline-flex` is a variant of display-flex . The difference is that it acts as inline, so it only takes the space it needs and allows other tags to be on the same line 
+2. `display: flex`
+
+`flex-direction` defines the direction of the items, `row` is the default (in fila), `column` (in colonna), `row-reverse`, `column-reverse` to reverse items
+
+`flex-wrap` is used to wrap or no wrap items if there is no space left, the possible values are: `nowrap` (default, is used not to wrap items, so items will be squeezed to fit), `wrap` (is used to wrap items and send them to a new line if necessary).
+
 Justify-content(defines the position of the items on the main direction)
 justify-content: Flex-start(default), flex-end, centre, space-around, space-between, space-evenly
 Align-items(defines the position of the items on the secondary direction)
