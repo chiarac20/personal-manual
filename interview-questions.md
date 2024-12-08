@@ -65,7 +65,7 @@ Async is a syntax to use functions as promises. Await is a syntax to use promise
 
 The keyword `async` before a function makes the function return a promise. If the function returns something, the promise resolves with the returned value. If the function throws an error the promise rejects with that error.
 
-In async functions, the keyword await before a promise makes the async function wait for the promise to resolve or reject. 
+In async functions, the keyword `await` before a promise makes the async function wait for the promise to resolve or reject. 
 We can assign a variable to the result of await and, if the promise resolves,  that will be the value of the promise. If it rejects the async function will throw an error and it will stop the code, unless the error is handled through try-catch.
 If we use try-catch and the promise resolves, it returns its value. If the promise rejects, the async function throws an error and the code in the catch bloc is executed.
 
@@ -85,7 +85,7 @@ When we need to move a component to a different part of the app for example an o
 Uncontrolled components are components where we use ref to interact with DOM elements especially in input or form components.
 Controlled components are components where we manage and update the state and React manages the internal state.
 
-##What is a hook?
+## What is a hook?
 It’s a React function that starts with the the prefix `use`
 
 ### Which are the rules for using hooks?
@@ -120,7 +120,7 @@ Instead of  `setCount(count+1)`  we use `setCount((prevCount) => prevCount + 1)`
 
 `useContext` used to access data from a Context. We can have multiple contexts and context wrappers one around the other
 
-`useImperativeHandle` allows us to interact with a component imperatively, for example by calling a function of a child component inside a parent component not by passing states to it. Imperative code using refs should be avoided in most cases. useImperativeHandle is used with forwardRef).With focus or scroll it may be useful. 
+`useImperativeHandle` allows us to interact with a component imperatively, for example by calling a function of a child component inside a parent component not by passing states to it. Imperative code using refs should be avoided in most cases. useImperativeHandle is used with [forwardRef](https://react.dev/reference/react/forwardRef)).With focus or scroll it may be useful. 
 
 `useCallback` is used to store a callback and not recreate it again when the surrounding function runs again unless one of its dependencies changes. It accepts a callback and an array of dependencies. It’s used with React.memo for optimisation and to avoid unnecessary renders. 
 
@@ -147,130 +147,180 @@ To get data . Components set up a subscription to the store and whenever the dat
 To change store data we use a reducer (a function that takes a state and a dispatched action, and returns a new state based on that action. Reducers must be pure functions )
 To trigger data changes components dispatch actions(a JS object that describes the operation the reducer should perform). Redux forwards action to the reducer and the reducer performs the operation described in the action and then returns the new state that will replace the existing state in the data store. When a state is changed, subscribing components are notified of the change so that they can update their UI
 
-Redux Toolkit is a package that simplifies using Redux 
+**Redux Toolkit** is a package that simplifies using Redux 
 
-In the project run npm install @reduxjs/toolkit react-redux --save, then run npm start.
-Alternatively: yarn add @reduxjs/toolkit react-redux and yarn start
+In the project run `npm install @reduxjs/toolkit react-redux --save`, then run `npm start`.
+
+Alternatively: `yarn add @reduxjs/toolkit react-redux` and `yarn start`
 
 In the src folder create ‘store’ folder where to keep all redux-related files and create an index.js file where to put all redux logic
 
-To create a slice of the global state
-	It is good to have a file per each state slice
-	import {createSlice} from ‘@reduxjs/toolkit’ to create a slice of the global state
-	call createSlice() and pass to it an object that has name, initialState, reducers (a list of 	methods that receive the state and an action and change part of the state)
-	const counterSlice = createSlice({ 
-		name: ‘’, 
-		initialState: {counter: 0, show: true}, 
-		reducers: {
-			add (state) {state.counter++}, 
-			remove (state) {state.counter —},
-			increase (state, action) {state.counter = state.counter + action.payload}
-			show (state) {state.show = !state.show}
-		}
-	})
-Export the slice.reducer (the group of all the methods inside the reducers in createSlice()) as we will need it in store folder in index.js
-createSlice() automatically creates unique action identifiers for the different reducers and to get hold of these identifiers we can access the slice of state.actions and the 	different method names we have in the reducers  attributes of the object we pass to createSlice, this create a method that when called will 	create action objects and will trigger the reducer method, indeed called action-creater method.
-	export the actions
-	export const counterActions = counterSlice.actions;
-To create a store
-	In the store folder index.js  
-	- import all the state slices reducers
-	- Import {configureStore} from ‘@reduxjs/toolkit’ to create a store;
-	call configureStore and pass to it a configuration object where we set a reducer property and 	give as a value one reducer (a group of all the reducers used in createSlice) if we have only 	one state slice or an object of reducers if we have multiple state slices
-	const store = configureStore({reducer: counter.reducer})
-	or const store = configureStore({reducer: {count: counter.reducer}, {login: login.reducer}})
-	export default store
-	To provide the store: 
-to give access to the store to all the components, in index.js (where we render the entire app) 
-	- import { Provider } from ‘react-redux’ and wrap the root component App with Provider
-	- import the store in index.js and in the Provider set a store prop and give the value of the redux store. 
+### To create a slice of the global state
+It is good to have a file per each state slice
 
-To dispatch actions
-	
-	In the component where we need the actions, 
-		- import {useDispatch} from ‘react-redux’
-		- import the actions(which is an object that has the reducers methods as keys)
- 	Call useDispatch() that returns a dispatch function that we can call 	When dispatching an action we access the actions and call the method we need and pass it a 	value if we need it, this will be stored in action.payload
+
+
+```
+import {createSlice} from ‘@reduxjs/toolkit’; // 1
+const counterSlice = createSlice({ // 2
+	name: ‘’, 
+	initialState: {counter: 0, show: true}, 
+	reducers: {
+		add (state) {state.counter++}, 
+		remove (state) {state.counter --},
+		increase (state, action) {state.counter = state.counter + action.payload}
+		toggle(state) {state.show = !state.show}
+	}
+});
+
+export counterSlice.reducer; // 3
+export const counterActions = counterSlice.actions; // 4
+```
+
+1. Create a slice of the global state
+2. call `createSlice()` and pass to it an object that has name, initialState, reducers (a list of methods that receive the state and an action and change part of the state)
+3. Export the `slice.reducer` (the group of all the methods inside the reducers in createSlice()) as we will need it in store folder in index.js
+`createSlice()` automatically creates unique action identifiers for the different reducers and to get hold of these identifiers we can access the slice of `state.actions` and the different method names we have in the reducers attributes of the object we pass to createSlice, this create a method that when called will create action objects and will trigger the reducer method, indeed called action-creater method.
+5. export the actions
+
+
+
+### To create a store
+In the store folder index.js  
+1. import all the state slices reducers
+2. `import {configureStore} from ‘@reduxjs/toolkit’` to create a store;
+3. call configureStore and pass to it a configuration object where we set a reducer property and 	give as a value one reducer (a group of all the reducers used in createSlice) if we have only 	one state slice or an object of reducers if we have multiple state slices
+
+```
+const store = configureStore({reducer: counter.reducer})
+// or
+const store = configureStore({reducer: {count: counter.reducer}, {login: login.reducer}})
+export default store
+```
+### To provide the store:
+to give access to the store to all the components, in index.js (where we render the entire app) 
+
+1. `import { Provider } from ‘react-redux’` and wrap the root component App with Provider
+2. import the store in `index.js` and in the Provider set a store prop and give the value of the redux store. 
+
+### To dispatch actions
+In the component where we need the actions, 
+1. `import {useDispatch} from ‘react-redux’;`
+2. import the actions(which is an object that has the reducers methods as keys)
+ 
+Call `useDispatch` that returns a dispatch function that we can call
+
+When dispatching an action we access the actions and call the method we need and pass it a value if we need it, this will be stored in action.payload
+
  	import {useDispatch} from ‘react-redux’
 	import {counterActions} from ‘./store/index.js’
 	const dispatch=useDispatch();
 	const incrementHandler = () => dispatch (counterActions.increment())
 	const increaseHandler = () => dispatch(counterActions.increase(10)) 10 is accessed with action.payload
-To get data
-	- import {useSelector} from ‘react-redux’
-	- in the component call useSelector() (once or multiple times if we need access to multiple 		slices of the state) and pass it a function that receives the state managed by redux and 		returns the slice of the state that we want to extract. When using useSelector 		react-redux automatically sets up a subscription to the store for that component and the 	component will receive the latest slice of state when that piece of data changes in the store		const counter = useSelector(state => state.count.counter)
 
-React Router
+### To get data
+1. `import {useSelector} from ‘react-redux’`
+2. in the component call `useSelector` (once or multiple times if we need access to multiple slices of the state) and pass it a function that receives the state managed by redux and returns the slice of the state that we want to extract. When using useSelector react-redux automatically sets up a subscription to the store for that component and the 	component will receive the latest slice of state when that piece of data changes in the store `const counter = useSelector(state => state.count.counter)`
+
+## React Router
 It’s a package to create multipage React applications and provides client-side routing. Routing means that different paths in the url load different pages
 
-In the folder of the project run ’npm install react-router-dom@5’
-Then ’yarn start’
+In the folder of the project run `npm install react-router-dom@5 --save` or `yarn add react-router-dom@5`, then `yarn start`
 In the App component 
-	import {Route} from ‘react-router-dom’
-	wrap each component that we want to render with Route and add a path prop that is the path in 		the url
-	<Route path=“/welcome”>   <Welcome/>    </Route>
-	<Route path=“/products”>    <Products/>      </Route>
-In index.js where we render the root component
-	import {BrowserRouter} from ‘react-router-dom’ and wrap the App component
-	<BrowserRouter> <App/> </BrowserRouter>
-To create a link and navigate between pages
-	Import {Link} from react-router-dom with a ‘to’ prop with the path where we want to 		navigate to. Unlike <a href> , <Link> doesn’t refresh the page.
-	For external pages use <a href>, for a different url inside the React app use <Link>
+1. `import {Route} from ‘react-router-dom’;`
+2. wrap each component that we want to render with Route and add a path prop that is the path in the url
+
+```
+<Route path=“/welcome”> <Welcome/> </Route>
+<Route path=“/products”> <Products/> </Route>
+```
+
+In `index.js` where we render the root component
+`import {BrowserRouter} from ‘react-router-dom’` and wrap the App component
+`<BrowserRouter> <App/> </BrowserRouter>`
+### To create a link and navigate between pages
+
+Import {Link} from react-router-dom with a `to` prop with the path where we want to navigate to. Unlike <a href> , <Link> doesn’t refresh the page.
+
+For external pages use `<a href>`, for a different url inside the React app use `<Link>`
+
 	import { Link } from ‘react-router-dom’
 	<Link to=“/welcome”>  Welcome  </Link>
 	<Link to=“/products”>  Products  </Link>
-To highlight the active link in the navigation
-	Import {NavLink} instead of {Link} from react-router-dom with a ‘to’ prop and an ‘activeClassName’ prop to set a css class when the link is active
+
+### To highlight the active link in the navigation
+Import {NavLink} instead of {Link} from react-router-dom with a `to` prop and an `activeClassName` prop to set a css class when the link is active
+
 	<NavLink to=“/welcome” activeClassName=“active”>  Welcome  </NavLink>
-To define dynamic paths we use in the path prop a special syntax   /:identifier
+### To define dynamic paths we use in the path prop a special syntax   /:identifier
+
 	<Route path=“/product-detail/:productId/:productIdInfo”>
 		<ProductDetail>
 	</Route>
-To extract route params, to get access to the value stored in the dynamic segment in the url
-	Inside the component to render (in this case inside ProductDetail) 
+### To extract route params, to get access to the value stored in the dynamic segment in the url
+Inside the component to render (in this case inside ProductDetail)
+
 		import { useParams } from ‘react-router-dom’
-		params will be an object where the keys are the dynamic segments leading to that page 
+		// params will be an object where the keys are the dynamic segments leading to that page 
 		import { useParams } from ‘react-router-dom’
 		const params=useParams();
 		const productIdentifier = params.productId;
-To ensure only one route is active at a time 
-	in App component import { Switch } from ‘react-router-dom’
-	wrap all the Routes component with Switch component and add ‘exact’ prop if we have paths 	starting in the same way
+
+### To ensure only one route is active at a time 
+in App component `import { Switch } from ‘react-router-dom’;`
+
+wrap all the Routes component with Switch component and add ‘exact’ prop if we have paths starting in the same way
+
 	<Switch>
 		<Route path=“/welcome”> <Welcome/></Route>
 		<Route path=“/products” exact> <Products/></Route>
-		<Route path=“/products/:productId”> <Products/></Route>	<Switch>
-To redirect the user 
-	Import { Redirect } from ‘react-router-dom’ with a “to” prop with the path we wish to use and put Redirect inside another Route
+		<Route path=“/products/:productId”> <Products/></Route>
+  	<Switch>
+
+### To redirect the user 
+Import { Redirect } from ‘react-router-dom’ with a “to” prop with the path we wish to use and put Redirect inside another Route
+
 	import { Redirect } from “react-router-dom”
-	<Route path=“\” exact >
+	<Route path=“/” exact >
 		<Redirect to=“/welcome”/>
 	</Route>
-What is nested routing?
-	It allows, at the route level, to have a parent component control the rendering of a child component for example to add specific information to an existing page. To do that we define a Route inside another Route. 
+
+### What is nested routing?
+It allows, at the route level, to have a parent component control the rendering of a child component for example to add specific information to an existing page. To do that we define a Route inside another Route. 
 Instead of copying paths, we can import from ‘react-router-dom’ and then use useRouteMatch() that returns a match object with url and path as keys.
-Const match = useRouteMatch();
+
+```
+const match = useRouteMatch();
 <Route path={`${match.path}/comment`}></Route>
+```
 
-To show a not found page 
-	After all the routes write another Route with path=“ * ” so if no previous routes match the url entered, this will match all urls and render what is inside the Route.
+### To show a not found page 
+After all the routes write another Route with path=“*” so if no previous routes match the url entered, this will match all urls and render what is inside the Route.
+```
 <Switch>
-	….
-	<Route path=“ * ”>  Page not found      </Route>
+	<Route path=“*”> Page not found </Route>
 </Switch>
-What is programmatic navigation? 
-	It’s a way to navigate the user away from a page to a different page programmatically in our code. To do that we import useHistory and we can store the object returned in a constant. Then we use ‘replace’ or ‘push’. ‘push’  adds a new page to the history of pages, ‘replace’ replaces the current page.
+```
+
+### What is programmatic navigation? 
+It’s a way to navigate the user away from a page to a different page programmatically in our code. To do that we import useHistory and we can store the object returned in a constant. Then we use ‘replace’ or ‘push’. ‘push’  adds a new page to the history of pages, ‘replace’ replaces the current page.
 With ‘push’ we can go back with the back button to the page we are coming from, with ‘replace’ we can’t.
-Import { useHistory } from ‘react-router-dom’
+
+```
+Import { useHistory } from ‘react-router-dom’;
 Const history=useHistory();
-History.push(‘./products’)
+History.push(‘./products’);
+```
 
-When writing complex urls,  we can use a string or a different structure 	Instead of a string we can pass an object with pathname and search as keys
-	<Link to=“/products/:productId?quantity=1”></Link>
-Or <Link to={{pathname: “/products/:productId”, search:”?quantity=1”}}></Link>
+When writing complex urls, we can use a string or a different structure 	Instead of a string we can pass an object with pathname and search as keys
+```
+<Link to=“/products/:productId?quantity=1”></Link>
+// Or
+<Link to={{pathname: “/products/:productId”, search:”?quantity=1”}}></Link>
+```
 
-How to prevent the user from accidentally navigating away from a page, for example when entering data? 
-	We import ‘Prompt’ component from react-router-dom and we return it side by side with the form
+### How to prevent the user from accidentally navigating away from a page, for example when entering data? 
+We import ‘Prompt’ component from react-router-dom and we return it side by side with the form
 Prompt accepts a ‘when’ prop that accepts a boolean and a ‘message’ prop that accepts a callback (with a location param that has the details of the new page) and returns the string to show if the user tries to navigate away.
 If the user tries to leaves the page and when is set to ‘true’, the message will be displayed and if the user clicks ok, they will navigate away, if they click cancel they will stay on the page.
 Import { Prompt } from ‘react-router-dom’
