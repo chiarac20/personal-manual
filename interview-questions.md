@@ -321,119 +321,126 @@ When writing complex urls, we can use a string or a different structure 	Instead
 
 ### How to prevent the user from accidentally navigating away from a page, for example when entering data? 
 We import ‘Prompt’ component from react-router-dom and we return it side by side with the form
-Prompt accepts a ‘when’ prop that accepts a boolean and a ‘message’ prop that accepts a callback (with a location param that has the details of the new page) and returns the string to show if the user tries to navigate away.
-If the user tries to leaves the page and when is set to ‘true’, the message will be displayed and if the user clicks ok, they will navigate away, if they click cancel they will stay on the page.
+Prompt accepts a `when` prop that accepts a boolean and a `message` prop that accepts a callback (with a location param that has the details of the new page) and returns the string to show if the user tries to navigate away.
+If the user tries to leaves the page and when is set to `true`, the message will be displayed and if the user clicks ok, they will navigate away, if they click cancel they will stay on the page.
+
+```
 Import { Prompt } from ‘react-router-dom’
 Return <div>
 	<Prompt when={true} message={(location) => ‘Are you sure you want to navigate away?’}/>
 	<Form />
 </div>
-Query parameters
-	They are input given to the page through the url, for example filters in a search. They are optional and do not change the path. They are after ? in the url.
+```
 
-			                     PATH		QUERY STRING           HASH
-Example https://my-app/my/path?key=value&key2=value2#hash-part
+### Query parameters
+They are input given to the page through the url, for example filters in a search. They are optional and do not change the path. They are after ? in the url.
 
-The part after the question mark and before hash (#) is the query string, a string that contains the query parameters with this format key1=value1&key2=value2&…. & is called ampersand.
+Example https://my-app/my/path?param1=value1&param2=value2#hash-part
 
-The name and values of the query parameters cannot contain &, #, =. To include these chars into the values of query parameters we can use encodeURIComponent()
+| PATH | QUERY STRING | HASH |
+|------|--------------|------|
+| my-app/my/path | param1=value1&param2=value2 | hash-part |
+
+The part after the question mark and before hash (#) is the query string, a string that contains the query parameters with this format key1=value1&key2=value2&... . & is called ampersand.
+
+The name and values of the query parameters cannot contain &, #, =. To include these chars into the values of query parameters we can use `encodeURIComponent` method
 
 To read the values in the query params we import useLocation from ‘react-router-dom’. This returns a location object that has the information of the currently loaded url (including pathname and the search properties which has query params).
 Use new URLSearchParams(location.search) and pass to it location.search and that returns a queryParams object.
 To access query parameters by key we use queryParams.get(‘name of the key’)
 
-Import {useLocation} from ‘react-router-dom’
-Const location=useLocation()
-Const queryParams=new URLSearchParams(location.search);
-Const sortValue = queryParams.get(‘sort)
+```
+import {useLocation} from ‘react-router-dom’
+const location=useLocation()
+const queryParams=new URLSearchParams(location.search);
+const sortValue = queryParams.get(‘sort)
+```
 
+## CSS
 
+### SELECTOR PRIORITY
+1. style: {}  Inline style
+2. #id selector
+3. .class selector
+4. Tag selector
 
+### PSEUDO-SELECTORS (PSEUDO CLASSES + PSEUDO ELEMENTS)
+#### PSEUDO-CLASSES
+1. :hover (mouse-over)
+2. :active  (for links and buttons, when the mouse is pressed on the element)
+3. :focus (for inputs, when the focus is on the input)
+4. :visited (only for links, already visited)
+#### PSEUDO-ELEMENTS
+1. :first-child
+2. :last-child
+3. li:nth-child(3) (selects the 3rd li in a list)
+4. :nth-child(2) (selects the second element in every group of siblings)
 
+### ADVANCED SELECTORS
+**ADJACENT SIBLING COMBINATOR** `+` (it selects the element that directly follows the first element)
 
+`input + label` (it selects the label that comes immediately after every input)
 
+**GENERAL SIBLING COMBINATOR** `~` (it selects all the iterations of the second element that follow the first element and are children of the same parent )
 
-CSS 
+`img ~ p` (it selects all the paragraphs that follow an image and are siblings of image)
 
-SELECTOR PRIORITY
-style: {}  Inline style
-#id selector
-.class selector
-Tag selector
+**CHILD COMBINATOR** `>` (it selects all the iterations of the second element that are direct children of the first element)
 
-PSEUDO-SELECTORS (PSEUDO CLASSES + PSEUDO ELEMENTS)
-PSEUDO-CLASSES
-:hover (mouse-over)
-:active  (for links and buttons, when the mouse is pressed on the element)
-:focus (for inputs, when the focus is on the input)
-:visited (only for links, already visited)
-PSEUDO-ELEMENTS
-:first-child
-:last-child
-li:nth-child(3) (selects the 3rd li in a list)
-:nth-child(2) (selects the second element in every group of siblings)
+`ul > li` (it selects all the li that are direct children of the ul)
 
-ADVANCED SELECTORS
-ADJACENT SIBLING COMBINATOR + (it selects the element that directly follows the first element)
-input + label (it selects the label that comes immediately after every input)
+**DESCENDANT COMBINATOR** (space) (it selects all the iterations of the second element that are descendants of the first element)
 
-GENERAL SIBLING COMBINATOR ~ (it selects all the iterations of the second element that follow the first element and are children of the same parent )
-img ~ p (it selects all the paragraphs that follow an image and are siblings of image)
+`ul div` (it selects all the div that are descendant of the ul)
 
-CHILD COMBINATOR > (it selects all the iterations of the second element that are direct children of the first element)
-ul > li (it selects all the li that are direct children of the ul)
+**ATTRIBUTE SELECTOR** `[attribute]` or `[attribute=value]` (it selects elements based on the presence or value of an attribute)
 
-DESCENDANT COMBINATOR (it selects all the iterations of the second element that are descendants of the first element)
-ul  div (it selects all the div that are descendant of the ul)
+```
+input[value] // it selects all the inputs that have a value attribute
+input[value=“chiara”] // it select the inputs that have “chiara” as a value
+```
 
-ATTRIBUTE SELECTOR [attribute] or [attribute=value] (it selects elements based on the presence or value of an attribute)
-Input[value] it selects all the inputs that have a value attribute
-input[value=“chiara”] it select the inputs that have “chiara” as a value 
-
-COLORS
+### COLORS
 Check colour picker on google for preview of colour and rgb and hex code
-COLOR CODES:
-Color name color: blue
-Hex code #6numbers or letters 0-9 a-f color: #0000ff
-Rgba code(3 sets of numbers 0-255 and a number 0-1 for transparency with 0 fully transparent) 
-	color: {rgba(0, 0, 255, 0.5)}
+#### COLOR CODES:
+1. Color name `color: blue`
+2. Hex code #6numbers or letters 0-9 a-f `color: #0000ff`
+3. Rgba code(3 sets of numbers 0-255 and a number 0-1 for transparency with 0 fully transparent) `color: rgba(0, 0, 255, 0.5)`
 
-BACKGROUND
-background-image: {url(“”)} to add an image from a url as a background
-background-size: {height width}
-background-size: cover is used to stretch the image and let it cover the whole part
-Background-repeat: no-repeat (to avoid the message being repeated)
+#### BACKGROUND
+1. `background-image: {url(“”)}` to add an image from a url as a background
+2. `background-size: {height width}`
+3. `background-size: cover` is used to stretch the image and let it cover the whole part
+4. `background-repeat: no-repeat` (to avoid the message being repeated)
 
-GRADIENTS (they show transitions between 2 or more colours, generally used for backgrounds). They can be linear or radial
-linear-gradient(to direction, color1, color2) or linear-gradient( angledeg, color1, color2) 
-background: linear-gradient(to top right, blue, steelblue, aliceblue)
-background: linear-gradient(30deg, blue, steelblue, aliceblue)
+#### GRADIENTS (they show transitions between 2 or more colours, generally used for backgrounds). They can be linear or radial
+1. linear-gradient(to direction, color1, color2) or linear-gradient( angledeg, color1, color2) background: linear-gradient(to top right, blue, steelblue, aliceblue) background: linear-gradient(30deg, blue, steelblue, aliceblue)
+2. radial-gradient(shape, color1, color2, ….). ellipse is the default shape, circle is the other option
 
-radial-gradient(shape, color1, color2, ….). ellipse is the default shape, circle is the other option
 To specify the proportions of each colour we use percentage. 
 radial-gradient(circle, color1 30%, color2 40%). The proportions need to be in ascending order
 
-TYPES OF UNITS
-ABSOLUTE: px, cm, mm 
-RELATIVE: % (relatively to the parent component), em(relative to the current font size of the element), vh (view height of the screen, 1vh=1% of the screen height), vw(view width of the screen, 1vw=1% of the screen width) 
+#### TYPES OF UNITS
+1. ABSOLUTE: px, cm, mm
+2. RELATIVE: % (relatively to the parent component), em(relative to the current font size of the element), vh (view height of the screen, 1vh=1% of the screen height), vw(view width of the screen, 1vw=1% of the screen width) 
 
-TEXT MANIPULATION
-text-decoration: underline/none(very useful for links)/line-through/overline/underline overline/….
-text-transform: capitalize, uppercase, lowercase
-text-align: left, right, center, justify
-font-size: 
-font-weight: generally a number between 100 and 900 (it defines how bold an element is)
-font-style: italic/oblique/normal
-Font-family: 
+#### TEXT MANIPULATION
+1. **text-decoration**: underline/none(very useful for links)/line-through/overline/underline overline/...
+2. **text-transform**: `capitalize`, `uppercase`, `lowercase`
+3. **text-align**: `left`, `right`, `center`, `justify`
+4. **font-size**
+5. **font-weight**: generally a number between 100 and 900 (it defines how bold an element is)
+6. **font-style**: `italic`/`oblique`/`normal`
+7. **Font-family:** 
 3 most used family groups are: serif(generally for printouts), sans-serif(for websites), monospace(where every letter take the same space)
 Specific family names include Times New Roman, Georgia(serif), Arial, Calibri, Helvetica(sans-serif), Courier New(monospace)
 Font-family can take more font names so if the browser doesn’t support the first, it tries the next one; separate each one with a comma and if the font name has white space, use “” (“Times New Roman”). Start with the font you want and end with a generic family.
 Font-family: Arial, Calibri, sans-serif;
 To get external fonts search google fonts (https://fonts.google.com) and select the font and weight we want, copy the link in the html doc before the css doc and then inside the css file use the name of the font selected.
 
-THE BOX MODEL
-It is used when talking about layout. It is a box that wraps every HTML element and consists:                          content, padding, borders and margins
-border: (size color style) style can be solid, dotted, dashed, double
+#### THE BOX MODEL
+It is used when talking about layout. It is a box that wraps every HTML element and consists: content, padding, borders and margins
+1. border: (size color style) style can be `solid`, `dotted`, `dashed`, `double`
 We can style each border separately: border-bottom, border-top, border-right, border-left
 border-radius is used to have rounded borders
 For padding and margin 
