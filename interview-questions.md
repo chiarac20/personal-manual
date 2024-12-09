@@ -520,53 +520,80 @@ The second and third params are optional, so if not set they will be flex-shrink
 
 ### GRID
 Like flexbox grid is used to define the layout of the children components inside a container, but while flexbox positions elements in one dimension: row or column, grid positions element in 2 dimensions, both columns and rows
-In the container:
-Display: grid 
-Grid-template-columns defines how many columns and how wide they should be. It accepts the width of each column separated by white space. Use auto to divide all the space equally
-Grid-template-columns: 100px 50px 30px creates 3 columns the first one 300px wide, the second one 50px and the third one 30px
-Grid-template-rows defines how many rows and how tall they should be. It accepts the height of each row separated by white space. Use auto to divide all the space equally
-Grid-template-rows: 50px 80px 30px creates 3 rows the first one 50px high, the second one 80px and the third one 30px
-Justify-content is used to align horizontally the whole grid inside a container. The grid’s total width needs to be less than the container’s width for the justify-content to have an effect
-Justify-content: start, end, center, space-evenly, space-around, space-between
-Align-content is used to align vertically the whole grid inside a container.The grid’s total height needs to be less than the container’s height for the align-content to have an effect
-align-content: start, end, center, space-evenly, space-around, space-between
-Column-gap defines the size of the gap between columns
-Column-gap: 100px
-Row-gap defines the size of the gap between rows
-Row-gap: 50px
-As a shorthand we can use gap and it defines the size of the gap between rows and columns.
+
+#### In the container:
+`display: grid`
+
+`grid-template-columns: {number}` defines how many columns and how wide they should be. It accepts the width of each column separated by white space. Use auto to divide all the space equally
+
+`grid-template-columns: 100px 50px 30px;` creates 3 columns the first one 300px wide, the second one 50px and the third one 30px
+
+`grid-template-rows` defines how many rows and how tall they should be. It accepts the height of each row separated by white space. Use auto to divide all the space equally
+
+`grid-template-rows: 50px 80px 30px;` creates 3 rows the first one 50px high, the second one 80px and the third one 30px
+
+`justify-content` is used to align horizontally the whole grid inside a container. The grid’s total width needs to be less than the container’s width for the justify-content to have an effect
+
+`justify-content: start | end | center | space-evenly | space-around | space-between`
+
+`align-content` is used to align vertically the whole grid inside a container.The grid’s total height needs to be less than the container’s height for the align-content to have an effect
+`align-content: start, end, center, space-evenly, space-around, space-between`
+
+`column-gap` defines the size of the gap between columns
+`column-gap: 100px;`
+
+`row-gap` defines the size of the gap between rows
+`row-gap: 50px;`
+
+As a shorthand we can use `gap` and it defines the size of the gap between rows and columns.
 It accepts 2 values: row-gap and column-gap or one value that applies to both
-Gap: 50px 100px (defines 50px row-gap and 100px column-gap)
-Gap: 65px (defines 65px row gap and 65px column-gap)
-In the grid items:
-Grid-row: accepts 2 values separated by /   The first value is which row line the element starts and the second one is which line the element ends. Grid-row accepts as a second element span to define how many rows the element should occupy
-Grid-row:  1 / 3 it starts at line 1 and ends at line 3
-Grid-row: 1 / span 2 it starts at line 1 and spans for 2 rows
-Grid-column: accepts 2 values separated by /   The first value is which column line the element starts and the second one is which line the element ends. Grid-column accepts as a second element span to define how many column the element should occupy
-Grid-column:  1 / 3 it starts at line 1 and ends at line 3
-Grid-column: 1 / span 2 it starts at line 1 and spans for 2 columns
-Grid-area is a shorthand for grid-row and grid-column and accepts 4 values:
-Grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end
-Grid-area: 1 / 1 / 3 / spans 2 
-means grid-row-start at line 1,  grid-column-start at line 1, grid-row-end at line 3 and grid-column-end spans for 2 columns
+`gap: 50px 100px;` (defines 50px row-gap and 100px column-gap)
+`gap: 65px;` (defines 65px row gap and 65px column-gap)
 
-TRANSITION
+#### In the grid items:
+`grid-row`: accepts 2 values separated by `/`. The first value is which row line the element starts and the second one is which line the element ends. `grid-row` accepts as a second element span to define how many rows the element should occupy
+
+`grid-row:  1 / 3;` it starts at line 1 and ends at line 3
+
+`grid-row: 1 / span 2;` it starts at line 1 and spans for 2 rows
+
+`grid-column`: accepts 2 values separated by `/`. The first value is which column line the element starts and the second one is which line the element ends. Grid-column accepts as a second element span to define how many column the element should occupy
+
+`grid-column:  1 / 3;` it starts at line 1 and ends at line 3
+
+`grid-column: 1 / span 2;` it starts at line 1 and spans for 2 columns
+
+`grid-area` is a shorthand for `grid-row` and `grid-column` and accepts 4 values:
+
+`grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end`
+
+`grid-area: 1 / 1 / 3 / spans 2;` means grid-row-start at line 1,  grid-column-start at line 1, grid-row-end at line 3 and grid-column-end spans for 2 columns
+
+### TRANSITION
 It is used to change property values smoothly, over a given duration
-Transition is a shorthand for:
-Transition property (the CSS property to add an effect to)
-Transition duration: (how long the transition should last in seconds (s) or milliseconds (ms)) 
-Transition-timing-function: (the speed curve of the transition effect) Values are ease/linear/ease-	in/ease-out/ease-in-out. Optional
-Transition delay: a delay in seconds for the transition effect. Optional
-Transition: width 2s ease 0.5s
+`transition` is a shorthand for:
 
-TRANSFORM
+`transition-property` (the CSS property to add an effect to)
+
+`transition-duration`: (how long the transition should last in seconds (s) or milliseconds (ms)) 
+
+`transition-timing-function`: (the speed curve of the transition effect) Values are `ease`, `linear`, `ease-in`, `ease-out`, `ease-in-out`.
+
+Optional:
+`transition-delay`: a delay in seconds for the transition effect. Optional
+
+`transition: width 2s ease 0.5s;`
+
+### TRANSFORM
 It is used to move, rotate, scale an element. 
-Transform: translate(param for the x-axis, param for the y-axis) moves an element from its position according to parameters given for the x-axis and the y-axis. Unlike margin, it grants better performance and can move an element on top of another one
-X-axis is the horizontal axis and positive values move to the right and negative to the left
-Y-axis is the vertical axis and positive values move up and negative down
-Transform: translate(50px 100px) moves an element 50px to the right and 100px down
-Transform: translate(-30px -50px) moves an element 30px to the left and 50px up
-Transform: scale(value) scales the element as defined in the value passes
+
+`transform: translate(param for the x-axis, param for the y-axis);` moves an element from its position according to parameters given for the x-axis and the y-axis. Unlike margin, it grants better performance and can move an element on top of another one
+`x-axis` is the horizontal axis and positive values move to the right and negative to the left
+`y-axis` is the vertical axis and positive values move up and negative down
+
+#. `transform: translate(50px 100px);` moves an element 50px to the right and 100px down
+#. `transform: translate(-30px -50px);` moves an element 30px to the left and 50px up
+#. `transform: scale(value)` scales the element as defined in the value passes
 transform: scale(2.5) makes the element 2.5 times bigger 
 Transform: rotate(deg) rotates the element by the the degree indicated 
 Transform: rotate(45deg) rotates the element 45 degrees  to the right
