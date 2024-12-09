@@ -679,47 +679,47 @@ Z-index is a CSS property used on elements with position absolute or fixed. It�
 1. Declarative approach We define the desired target states and react will figure out the actual JS Dom instructions
 1. How does React optimise DOM render? Though the virtual DOM: Following any changes, before re-rendering React creates a copy of the DOM and applies the changes to the copy, the virtual DOM. It then compares the DOM in the browser and the virtual DOM and updates in the browser only the elements that have been changed 
 
-Clean code 
-	0.	Indentation
-	0.	Good name methods/variables
-	0.	Short methods
-	0.	Single responsibility
-	0.	Modularity
-	0.	Less indentation possible
-	0.	DRY (Don't Repeat Yourself)
-	0.	No hard coded values (use constants)
-	0.	Pure functions when it's possible
-	0.	Immutable data
-	0.	No side effects
-Possible questions:
-	0.	Biggest challenge in your previous experiences?
-	0.	Update functionality in Sapientiam Studio, when the code was not clean
-	0.	Debug other people's code
-	0.	The best target you archived
-	0.	Weather forecast app
-	0.	What have you learned in Leccellenza
-	0.	Improved my html/css/js skills,
-	0.	jQuery
-	0.	What have you learned in Sapientiam
-	0.	Unit tests
-	0.	AJAX
-	0.	Async code
-	0.	Responsive web
-	0.	Feature of a unit test
-	0.	Must test unit sw (must test just one part of code and mock the dependencies)
-	0.	Must cover edge cases
-	0.	Must be independent from other unit tests
-	0.	What is TDD (Test Driven Development)
-	0.	Methodology to write code based on unit tests
-	0.	Steps:
-	0.	create unit test (that fail)
-	0.	Write the code to let the tests pass
-	0.	refactor the code
-	0.	What did Leccellenza do?
-	0.	Create sw for local small shops in Lecce (south of Italy)
-	0.	What did Sapientiam Studio do?
-	0.	Sw house for small companies
-	0.	Esperienza particolare Leccellenza:
-Spiaggia privata, app per i clienti (interfacciata con le API scritte da altri programmatori di Leccellenza). Ogni giorno il backend creava un codice per ogni ombrellone. Il cliente inseriva il codice nell'app che lo validava attraverso API. Una volta validato lo memorizzava nel local storage insieme alla data di scadenza, e poi lo inviava ad ogni richiesta per acquisto per il bar.
+## Clean code 
+1. Indentation
+1. Good name methods/variables
+1. Short methods
+1. Single responsibility
+1. Modularity
+1. Less indentation possible
+1. DRY (**D**on't **R**epeat **Y**ourself)
+1. No hard coded values (use constants)
+1. Pure functions when it's possible
+1. Immutable data
+1. No side effects
+### Possible questions:
+1. Biggest challenge in your previous experiences?
+1. Update functionality in Sapientiam Studio, when the code was not clean
+1. Debug other people's code
+1. The best target you archived
+1. Weather forecast app
+1. What have you learned in Leccellenza
+1. Improved my html/css/js skills,
+1. jQuery
+1. What have you learned in Sapientiam
+1. Unit tests
+1. AJAX
+1. Async code
+1. Responsive web
+1. Feature of a unit test
+1. Must test unit sw (must test just one part of code and mock the dependencies)
+1. Must cover edge cases
+1. Must be independent from other unit tests
+1. What is TDD (Test Driven Development)
+1. Methodology to write code based on unit tests
+1. Steps:
+1. create unit test (that fail)
+1. Write the code to let the tests pass
+1. refactor the code
+1. What did Leccellenza do?
+1. Create sw for local small shops in Lecce (south of Italy)
+1. What did Sapientiam Studio do?
+1. Sw house for small companies
+1. Esperienza particolare Leccellenza:
+**Spiaggia privata**, app per i clienti (interfacciata con le API scritte da altri programmatori di Leccellenza). Ogni giorno il backend creava un codice per ogni ombrellone. Il cliente inseriva il codice nell'app che lo validava attraverso API. Una volta validato lo memorizzava nel local storage insieme alla data di scadenza, e poi lo inviava ad ogni richiesta per acquisto per il bar.
 L'app non gestiva pagamenti (che venivano fatti con il pos o cash ai camerieri). Mostrava la lista di cosa era disponibile e permetteva di selezionarli per un'ordine.
 L'app interrogava le API anche per sapere a che punto della coda era l'ordine.
