@@ -591,87 +591,93 @@ It is used to move, rotate, scale an element.
 `x-axis` is the horizontal axis and positive values move to the right and negative to the left
 `y-axis` is the vertical axis and positive values move up and negative down
 
-#. `transform: translate(50px 100px);` moves an element 50px to the right and 100px down
-#. `transform: translate(-30px -50px);` moves an element 30px to the left and 50px up
-#. `transform: scale(value)` scales the element as defined in the value passes
-transform: scale(2.5) makes the element 2.5 times bigger 
-Transform: rotate(deg) rotates the element by the the degree indicated 
-Transform: rotate(45deg) rotates the element 45 degrees  to the right
-Transform: rotate(-90deg) rotates the element 90 degrees to the left
+1. `transform: translate(50px 100px);` moves an element 50px to the right and 100px down
+1. `transform: translate(-30px -50px);` moves an element 30px to the left and 50px up
+1. `transform: scale(value);` scales the element as defined in the value passes
+1. `transform: scale(2.5);` makes the element 2.5 times bigger 
+1. `transform: rotate(deg);` rotates the element by the the degree indicated 
+1. `transform: rotate(45deg);` rotates the element 45 degrees  to the right
+1. `transform: rotate(-90deg);` rotates the element 90 degrees to the left
 
-ANIMATION
+### ANIMATION
 To create an animation
+```
 @keyframes animation-name-at-my-choice {
-From {} starting point 
-To {} ending point
+	From {} starting point 
+	To {} ending point
 }
-It is used to define an animation that starts from the properties in the ‘from’ and end with the properties in the ‘to’
+```
+It is used to define an animation that starts from the properties in the `from` and end with the properties in the `to`
 
+```
 @keyframes animation-name-at-my-choice {
-0% {} starting point 
-50% {} half way
-…%
-100% {} ending point
+	0% {} starting point 
+	50% {} half way
+	...%
+	100% {} ending point
 }
+```
 It is used when we want to make more steps than just 2, so we use percentages
 
+```
 @keyframes red-to-black {
 	from {background-colour: red}
 	to {background-colour: black}
 }
+```
 This will create an animation that changes the background colour from red to black
-
+```
 @keyframes red-to-black {
 	0% {background-colour: red}
 	35% {background-colour: green; padding: 1vw}
 	63% {background-colour: blue; padding: 2vw }
 	100% {background-colour: black; padding: 3vw}
 }
+```
 This will create an animation that changes the background colour from red to green, blue and black and will change the padding accordingly
 
-To use animation
+### To use animation
 In the element that we want to apply the animation we need to use the following animation properties
-Animation-name: red-to-black      (the name that I used for the animation)
-Animation-duration: 5s                 (how long the animation should last, by default it’s 0)
-Animation-timing-function: linear (the speed curve of the animation) Values are ease/linear/ease-	in/ease-out/ease-in-out. 
-Animation-delay: 2s                       (delay in the animation start if we want one)
-Animation-iteration-count: 3          (it defines how many times we want the animation to iterate)
-	Animation-iteration-count: infinite (the animation will keep iterating forever)
-Animation-direction: normal (from start to finish) reverse (from finish to start)
-	alternate (forward and then backward, from start to finish and then from finish to start)
-	alternate-reverse (backward and then forward)
+
+| param | description |
+|-------|-------------|
+|`animation-name: red-to-black;` | the name that I used for the animation|
+|`animation-duration: 5s;` | how long the animation should last, by default it’s 0 |
+|`Animation-timing-function: linear | the speed curve of the animation |
+| | Values are `ease` `linear` `ease-in` `ease-out` `ease-in-out` |
+| `animation-delay: 2s;` | delay in the animation start if we want one |
+| `animation-iteration-count: 3;` | it defines how many times we want the animation to iterate |
+| `animation-iteration-count: infinite` |the animation will keep iterating forever |
+| `animation-direction: normal;` | from start to finish  |
+| `animation-direction: reverse;` | from finish to start | 
+| `animation-direction: alternate` | forward and then backward, from start to finish and then from finish to start |
+| `animation-direction: alternate-reverse` | backward and then forward |
+
 Shorthand for the 6 properties is
-Animation: name  duration timing-function delay iteration-count direction 
-Animation:  red-to-black 5s linear 0s 3 normal
+`animation: {name}  {duration} {timing-function} {delay} {iteration-count} {direction};` 
+`animation:  red-to-black 5s linear 0s 3 normal;`
 
-
-
-
-
-
-
-
-
-
-POSITIONS:
-Static is the default
-Fixed: it gives access to top, bottom, left, right regarding the entire page.It doesn’t move if the page is scrolled
-Absolute: it gives access to  top, bottom, left, right regarding its nearest ancestor component with position relative
-Relative: like static, but it’s a reference for elements with position absolute
+### POSITIONS:
+1. `static` is the default
+1. `fixed`: it gives access to top, bottom, left, right regarding the entire page. It doesn’t move if the page is scrolled
+1. `absolute`: it gives access to  top, bottom, left, right regarding its nearest ancestor component with position relative
+1. `relative`: like static, but it’s a reference for elements with position absolute
 Z-index is a CSS property used on elements with position absolute or fixed. It’s a pure number and if two elements overlap, the one with the greater z-index will be shown on top.
 
 
-Function scope 
+## Function scope
 
-Questions to the interviewer
-Do you use agile environment?
-Do you have any structured training process?
-How do you implement clean code?
-INTERVIEW QUESTIONS
 
-	0.	What are components in React?Reusable building blocks that can have an internal logic
-	0.	Declarative approach We define the desired target states and react will figure out the actual JS Dom instructions
-	0.	How does React optimise DOM render? Though the virtual DOM: Following any changes, before re-rendering React creates a copy of the DOM and applies the changes to the copy, the virtual DOM. It then compares the DOM in the browser and the virtual DOM and updates in the browser only the elements that have been changed 
+## Questions to the interviewer
+1. Do you use agile environment?
+1. Do you have any structured training process?
+1. How do you implement clean code?
+
+## INTERVIEW QUESTIONS
+
+1. What are components in React?Reusable building blocks that can have an internal logic
+1. Declarative approach We define the desired target states and react will figure out the actual JS Dom instructions
+1. How does React optimise DOM render? Though the virtual DOM: Following any changes, before re-rendering React creates a copy of the DOM and applies the changes to the copy, the virtual DOM. It then compares the DOM in the browser and the virtual DOM and updates in the browser only the elements that have been changed 
 
 Clean code 
 	0.	Indentation
