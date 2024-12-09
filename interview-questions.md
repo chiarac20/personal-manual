@@ -477,37 +477,48 @@ Defines the layout of the children components and it’s formed of a flex contai
 
 `flex-wrap` is used to wrap or no wrap items if there is no space left, the possible values are: `nowrap` (default, is used not to wrap items, so items will be squeezed to fit), `wrap` (is used to wrap items and send them to a new line if necessary).
 
-Justify-content(defines the position of the items on the main direction)
-justify-content: Flex-start(default), flex-end, centre, space-around, space-between, space-evenly
-Align-items(defines the position of the items on the secondary direction)
-Align-items: stretch(default), flex-start, flex-end, centre
+`justify-content` defines the position of the items on the main direction. The options are: `flex-start` (default), `flex-end`, `centre`, `space-around`, `space-between`, `space-evenly`
+
+`align-items` defines the position of the items on the secondary direction. Options:
+`stretch` (default), `flex-start`, `flex-end`, `centre`
+
 To centre items both horizontally and vertically use:
-Justify-content: center;
-Align-items: center;
+```
+justify-content: center;
+align-items: center;
+```
 
 In the items:
-order: a number from 1 upwards, it is used to change the normal ordering of the elements
+`order`: a number from 1 upwards, it is used to change the normal ordering of the elements
+```
 #element1 {order: 3}
 #element2 {order: 1}
 #element3 {order: 2}
+```
 #element2 will be displayed first, then element3, then element1
-Flex-grow: number defines how much excess space of the container the item should take. 
-	By default the value is 0, so the item will take no extra space. 
-	If we set each item to flex-grow: 1, each item will take the same amount of excess space
-	If we set an item to flex-grow: 3 or sth else, the item will take 3 times more excess space than 		the other items
-Flex-shrink: number defines how an item should shrink if we go below the minimum width.
-	By default the value is 1 so each item will shrink in the same way. 
-	If we set flex-shrink: 0 to an item, that item will not shrink
-	If we set flex-shrink: 4 to an item, that item will shrink 4 times more than the other items
-Flex-basis defines the minimum width of the element 
-Flex-basis: 100px the item minimum width will be 100px
-Flex: grow shrink basis it’s a shorthand to write flex-grow, flex-shrink and flex-basis
-The second and third params are optional, so if not set they will be flex-shrink:1, flex-basis: 0%
-Flex: 1 1 100px (it has flex-grow:1, flex-shrink:1 and flex-basis:100px)
-Flex:5 (it has flex-grow:5, flex-shrink:1 and flex-basis:0%)
-Align-self: flex-start/flex-end/center is used to align the selected item in the container. It only works vertically and overwrites align-items in the flex container
 
-GRID
+`flex-grow: {number}` defines how much excess space of the container the item should take, default value `0` (the itme will take no extra space
+
+If we set each item to `flex-grow: 1`, each item will take the same amount of excess space
+
+If we set an item to flex-grow: 3 or sth else, the item will take 3 times more excess space than the other items
+
+`flex-shrink: {number}` defines how an item should shrink if we go below the minimum width. Default value is `1` so each item will shrink in the same way. 
+If we set flex-shrink: `0` to an item, that item will not shrink
+If we set flex-shrink: `4` to an item, that item will shrink 4 times more than the other items
+
+`flex-basis` defines the minimum width of the element. The code `flex-basis: 100px` the item minimum width will be 100px
+
+`flex: {grow} | {shrink} | {basis}` it’s a shorthand to write flex-grow, flex-shrink and flex-basis
+
+The second and third params are optional, so if not set they will be flex-shrink:1, flex-basis: 0%
+
+`flex: 1 1 100px` (it has flex-grow:1, flex-shrink:1 and flex-basis:100px)
+`flex:5` (it has flex-grow:5, flex-shrink:1 and flex-basis:0%)
+
+`align-self: flex-start/flex-end/center` is used to align the selected item in the container. It only works vertically and overwrites align-items in the flex container
+
+### GRID
 Like flexbox grid is used to define the layout of the children components inside a container, but while flexbox positions elements in one dimension: row or column, grid positions element in 2 dimensions, both columns and rows
 In the container:
 Display: grid 
